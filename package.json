@@ -1,0 +1,22 @@
+{
+  "name": "umlfsm",
+  "version": "1.0.0",
+  "description": "UML-compliant Finite State Machine",
+  "author": "Dmitry Arkhipkin <arkhipkin@gmail.com>",
+  "main": "umlfsm.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dmarkh/umlfsm.git"
+  },
+  "keywords": [
+    "finite",
+    "state",
+    "machine",
+    "fsm",
+    "uml"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "babel-preset-env": "^1.6.0"
+  }
+}
