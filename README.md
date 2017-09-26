@@ -72,11 +72,11 @@ Or, it could be used as directly by including the umlfsm.js file with your proje
         
         // emit events
         // transition A->B
-        FSM._fsm_emit_event({ id: 'change' });
+        FSM._fsm_emit_event({ event_id: 'change' });
         // transition B->C
-        FSM._fsm_emit_event({ id: 'change' });
+        FSM._fsm_emit_event({ event_id: 'change' });
         // transition C->A
-        FSM._fsm_emit_event({ id: 'goback' });
+        FSM._fsm_emit_event({ event_id: 'goback' });
         
 
 ## FSM initialization
@@ -210,14 +210,19 @@ It can use event parameters or extended state to decide on the outcome.
 
 ### Stringify FSM state
 Sometimes it is useful to export current FSM state (tree, in case of nested states) as a string, e.g. for debug purposes:
-        
+          
+          ...
+          // start FMS in synchronous mode, let it transition
+          await FSM.start();
+          
+          // dump initial active state
 	      let state_as_string = FSM._fsm_get_active_state_as_string();
-        
+          ...
 
 ### GraphViz Dot export
 UmlFsm introduces rudimentary support for graphviz export. Not guaranteed to produce precise results (or even work) for all FSMs.
         
-	      let dot = fms._fsm_export_as_graphviz();
+	      let dot = FSM._fsm_export_as_graphviz();
 	      // ...save result as test.dot, run graph processor...
 
 	      $> dot test.dot -Tpng -o test.png
