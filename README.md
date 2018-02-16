@@ -93,8 +93,8 @@ States could be added to the FSM in two ways: direct or indirect
         
         // Example: nested parallel state A containing simultaneously operated states B and C
         let A = FSM._fsm_create_child_state({ id: 'A', parallel: true }),
-        	B = state1._fsm_create_child_state({ id: 'B' }),
-        	C = state1._fsm_create_child_state({ id: 'C', defer: ['evt1','evt2'] });
+        	B = A._fsm_create_child_state({ id: 'B' }),
+        	C = A._fsm_create_child_state({ id: 'C', defer: ['evt1','evt2'] });
         
 
 ...alternatively, if you decide to use subclassing of states...
@@ -108,8 +108,8 @@ States could be added to the FSM in two ways: direct or indirect
         
         // then adopt states ( or your subclasses ) by another state ( or subclass of state )
         FSM._fsm_adopt_child_state( A );
-        state1._fsm_adopt_child_state( B );
-        state1._fsm_adopt_child_state( C );
+        A._fsm_adopt_child_state( B );
+        A._fsm_adopt_child_state( C );
         
 
 ## Transitions
@@ -213,7 +213,7 @@ Sometimes it is useful to export current FSM state (tree, in case of nested stat
           
           ...
           // start FMS in synchronous mode, let it transition
-          await FSM.start();
+          await FSM._fsm_start();
           
           // dump initial active state
 	      let state_as_string = FSM._fsm_get_active_state_as_string();
